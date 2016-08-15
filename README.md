@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/clickatell/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/clickatell)
 [![StyleCI](https://styleci.io/repos/65714964/shield)](https://styleci.io/repos/65714964)
-853ee111-4bcf-4955-842c-dcd666da77a1
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/853ee111-4bcf-4955-842c-dcd666da77a1.svg?style=flat-square)](https://insight.sensiolabs.com/projects/853ee111-4bcf-4955-842c-dcd666da77a1)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/clickatell.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/clickatell)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 
