@@ -6,7 +6,7 @@ use NotificationChannels\Clickatell\ClickatellMessage;
 
 class ClickatellMessageTest extends \PHPUnit_Framework_TestCase
 {
-    private $clickatellMessage;
+    protected $clickatellMessage;
 
     public function setUp()
     {
@@ -14,9 +14,7 @@ class ClickatellMessageTest extends \PHPUnit_Framework_TestCase
         $this->clickatellMessage = new ClickatellMessage();
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_sets_a_clickatell_message()
     {
         $this->assertInstanceOf(
@@ -25,9 +23,7 @@ class ClickatellMessageTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_can_construct_with_a_new_message()
     {
         $actual = ClickatellMessage::create('This is some content');
@@ -35,9 +31,7 @@ class ClickatellMessageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('This is some content', $actual->getContent());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_can_set_new_content()
     {
         $actual = ClickatellMessage::create();
