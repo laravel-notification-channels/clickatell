@@ -33,6 +33,7 @@ class ClickatellMessage
     public function content($content)
     {
         $this->content = $content;
+
         return $this;
     }
 

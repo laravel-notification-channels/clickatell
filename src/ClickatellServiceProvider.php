@@ -13,6 +13,7 @@ class ClickatellServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ClickatellClient::class, function () {
             $config = config('services.clickatell');
+
             return new ClickatellClient($config['user'], $config['pass'], $config['api_id']);
         });
     }
