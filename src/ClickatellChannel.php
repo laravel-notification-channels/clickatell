@@ -32,11 +32,11 @@ class ClickatellChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$this->shouldSendMessage($notifiable, $notification)) {
+        if (! $this->shouldSendMessage($notifiable, $notification)) {
             return;
         }
 
-        if (!$to = $notifiable->routeNotificationFor('clickatell')) {
+        if (! $to = $notifiable->routeNotificationFor('clickatell')) {
             return;
         }
 
