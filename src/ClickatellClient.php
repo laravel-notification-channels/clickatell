@@ -41,7 +41,6 @@ class ClickatellClient
         $this->handleProviderResponses($response);
     }
 
-
     /**
      * @param array $responses
      * @throws CouldNotSendNotification
@@ -49,7 +48,6 @@ class ClickatellClient
     protected function handleProviderResponses(array $responses)
     {
         collect($responses)->each(function ($response) {
-
             $errorCode = (int) $response->errorCode;
 
             if ($errorCode != self::SUCCESSFUL_SEND) {
