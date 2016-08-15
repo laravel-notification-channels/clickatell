@@ -19,6 +19,11 @@ class ClickatellClient
     const INTERNAL_ERROR = 901;
 
     /**
+     * @var ClickatellHttp
+     */
+    private $clickatell;
+
+    /**
      * @param string $user
      * @param string $pass
      * @param string $apiId
