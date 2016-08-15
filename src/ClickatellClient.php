@@ -4,6 +4,7 @@ namespace NotificationChannels\Clickatell;
 
 use Clickatell\Api\ClickatellHttp;
 use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
+use stdClass;
 
 class ClickatellClient
 {
@@ -52,7 +53,7 @@ class ClickatellClient
      */
     protected function handleProviderResponses(array $responses)
     {
-        collect($responses)->each(function ($response) {
+        collect($responses)->each(function (stdClass $response) {
             $errorCode = (int) $response->errorCode;
 
             if ($errorCode != self::SUCCESSFUL_SEND) {
