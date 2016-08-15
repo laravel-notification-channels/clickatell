@@ -9,10 +9,8 @@ use Illuminate\Notifications\Notification;
 
 class ClickatellChannel
 {
-    /**
-     * @var ClickatellClient
-     */
-    private $clickatell;
+    /** @var ClickatellClient */
+    protected $clickatell;
 
     /**
      * @param ClickatellClient $clickatell
@@ -55,7 +53,7 @@ class ClickatellChannel
      * Check if we can send the notification.
      *
      * @param $notifiable
-     * @param   Notification $notification
+     * @param  Notification $notification
      *
      * @return bool
      */

@@ -31,15 +31,34 @@ class ClickatellClient
     /**
      * @param string|array $to String or Array of numbers
      * @param string $message
-     * @return void
      */
     public function send($to, $message)
     {
-        $to = (is_string($to)) ? [$to] : $to;
+        $to = collect($to)->toArray();
 
         $response = $this->clickatell->sendMessage($to, $message);
 
         $this->handleProviderResponses($response);
+    }
+
+
+    /**
+     * @param array $responses
+     * @throws CouldNotSendNotification
+     */
+    protected function handleProviderResponses(array $responses)
+    {
+        collect($responses)->each(function ($response) {
+
+            $errorCode = (int) $response->errorCode;
+
+            if ($errorCode != self::SUCCESSFUL_SEND) {
+                throw CouldNotSendNotification::serviceRespondedWithAnError(
+                    (string) $response->error,
+                    $errorCode
+                );
+            }
+        });
     }
 
     /**
@@ -67,27 +86,5 @@ class ClickatellClient
             self::NO_CREDIT_LEFT,
             self::INTERNAL_ERROR,
         ];
-    }
-
-    /**
-     * @param array $responses
-     * @throws CouldNotSendNotification
-     */
-    protected function handleProviderResponses(array $responses)
-    {
-        collect($responses)->each(function ($response) {
-            $errorCode = (int) $response->errorCode;
-            switch ($errorCode) {
-                default:
-                    throw CouldNotSendNotification::serviceRespondedWithAnError(
-                        (string) $response->error,
-                        $errorCode
-                    );
-                    break;
-                case self::SUCCESSFUL_SEND:
-                    // Do nothing, message has finished successfully :)
-                    break;
-            }
-        });
     }
 }

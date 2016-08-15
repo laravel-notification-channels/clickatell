@@ -4,13 +4,12 @@ namespace NotificationChannels\Clickatell;
 
 class ClickatellMessage
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $content;
 
     /**
      * @param string $content
+     *
      * @return static
      */
     public static function create($content = '')
@@ -28,6 +27,7 @@ class ClickatellMessage
 
     /**
      * @param string $content
+     *
      * @return $this
      */
     public function content($content)
