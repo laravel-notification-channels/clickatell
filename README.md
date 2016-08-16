@@ -6,6 +6,7 @@
 [![StyleCI](https://styleci.io/repos/65714964/shield)](https://styleci.io/repos/65714964)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/853ee111-4bcf-4955-842c-dcd666da77a1.svg?style=flat-square)](https://insight.sensiolabs.com/projects/853ee111-4bcf-4955-842c-dcd666da77a1)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/clickatell.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/clickatell)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/clickatell/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/clickatell/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 
 
@@ -90,7 +91,7 @@ TODO
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
-    
+
 ``` bash
 $ composer test
 ```
