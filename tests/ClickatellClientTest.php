@@ -5,6 +5,7 @@ namespace NotificationChannels\Clickatell\Test;
 use Clickatell\Api\ClickatellHttp;
 use Mockery;
 use NotificationChannels\Clickatell\ClickatellClient;
+use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
 
 class ClickatellClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -93,17 +94,50 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function throws_an_exception_on_failed_response_code()
     {
-        $this->markTestIncomplete('Pending http client dependency injected');
+        $this->setExpectedException(
+            CouldNotSendNotification::class,
+            "Clickatell responded with an error 'Invalid Destination Address: 105'"
+        );
+
+        $to = ['27848118']; # Bad number
+        $message = 'Hi there I am a message that is bound to fail';
+
+        $this->httpClient->shouldReceive('sendMessage')
+            ->once()
+            ->with($to, $message)
+            ->andReturn($this->getStubErrorResponse($to));
+
+        $this->clickatellClient->send($to, $message);
     }
 
+    /**
+     * @param $to
+     * @return array
+     */
     private function getStubSuccessResponse($to)
     {
         $return[] = (object) array(
-            'id'            => 'c15be99ec802d7d6424c7abd846e3bb8', # Returned message ID example
-            'destination'   => $to,
-            'error'         => false,
-            'errorCode'     => false
+            'id' => 'c15be99ec802d7d6424c7abd846e3bb8', # Returned message ID example
+            'destination' => $to,
+            'error' => false,
+            'errorCode' => false
         );
+
+        return $return;
+    }
+
+    /**
+     * @param $to
+     * @return array
+     */
+    private function getStubErrorResponse($to)
+    {
+        $return[] = (object) [
+            'id' => false,
+            'destination' => $to,
+            'error' => 'Invalid Destination Address',
+            'errorCode' => ClickatellClient::INVALID_DEST_ADDRESS,
+        ];
 
         return $return;
     }
