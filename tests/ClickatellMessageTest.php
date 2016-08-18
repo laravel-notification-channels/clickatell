@@ -2,16 +2,19 @@
 
 namespace NotificationChannels\Clickatell\Test;
 
+use Clickatell\Api\ClickatellHttp;
 use NotificationChannels\Clickatell\ClickatellMessage;
 
 class ClickatellMessageTest extends \PHPUnit_Framework_TestCase
 {
     protected $clickatellMessage;
+    private $httpClient;
 
     public function setUp()
     {
         parent::setUp();
-        $this->clickatellMessage = new ClickatellMessage();
+        $this->httpClient = \Mockery::mock(ClickatellHttp::class);
+        $this->clickatellMessage = new ClickatellMessage($this->httpClient);
     }
 
     /** @test */

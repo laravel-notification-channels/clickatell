@@ -2,6 +2,8 @@
 
 namespace NotificationChannels\Clickatell\Test;
 
+use Clickatell\Api\ClickatellHttp;
+use Mockery;
 use NotificationChannels\Clickatell\ClickatellClient;
 
 class ClickatellClientTest extends \PHPUnit_Framework_TestCase
@@ -9,25 +11,21 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @var $clickatellClient ClickatellClient */
     private $clickatellClient;
 
-    /** @var array */
-    private $clientResponseCodes;
+    /** @var $httpClient ClickatellHttp */
+    private $httpClient;
 
     public function setUp()
     {
         parent::setUp();
-        $this->clickatellClient = new ClickatellClient('user', 'pass', 'api_id');
-        $this->clientResponseCodes = [
-            ClickatellClient::SUCCESSFUL_SEND,
-            ClickatellClient::AUTH_FAILED,
-            ClickatellClient::INVALID_DEST_ADDRESS,
-            ClickatellClient::INVALID_API_ID,
-            ClickatellClient::CANNOT_ROUTE_MESSAGE,
-            ClickatellClient::DEST_MOBILE_BLOCKED,
-            ClickatellClient::DEST_MOBILE_OPTED_OUT,
-            ClickatellClient::MAX_MT_EXCEEDED,
-            ClickatellClient::NO_CREDIT_LEFT,
-            ClickatellClient::INTERNAL_ERROR,
-        ];
+
+        $this->httpClient = Mockery::mock(ClickatellHttp::class);
+        $this->clickatellClient = new ClickatellClient($this->httpClient);
+    }
+
+    public function tearDown()
+    {
+        Mockery::close();
+        parent::tearDown();
     }
 
     /** @test */
@@ -66,18 +64,47 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_sends_a_message_to_a_single_number()
     {
-        $this->markTestIncomplete('Pending http client dependency injected');
+        $to = ['27848118111'];
+        $message = 'Hi there I am a message';
+
+        $this->httpClient->shouldReceive('sendMessage')
+            ->once()
+            ->with($to, $message)
+            ->andReturn($this->getStubSuccessResponse($to));
+
+        $this->clickatellClient->send($to, $message);
     }
 
     /** @test */
     public function it_sends_a_message_to_multiple_numbers()
     {
-        $this->markTestIncomplete('Pending http client dependency injected');
+        $to = ['27848118111', '1234567890'];
+
+        $message = 'Hi there I am a message to multiple receivers';
+
+        $this->httpClient->shouldReceive('sendMessage')
+            ->once()
+            ->with($to, $message)
+            ->andReturn($this->getStubSuccessResponse($to));
+
+        $this->clickatellClient->send($to, $message);
     }
 
     /** @test */
     public function throws_an_exception_on_failed_response_code()
     {
         $this->markTestIncomplete('Pending http client dependency injected');
+    }
+
+    private function getStubSuccessResponse($to)
+    {
+        $return[] = (object) array(
+            'id'            => 'c15be99ec802d7d6424c7abd846e3bb8', # Returned message ID example
+            'destination'   => $to,
+            'error'         => false,
+            'errorCode'     => false
+        );
+
+        return $return;
     }
 }
