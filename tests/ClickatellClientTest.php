@@ -99,7 +99,7 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
             "Clickatell responded with an error 'Invalid Destination Address: 105'"
         );
 
-        $to = ['27848118']; # Bad number
+        $to = ['27848118']; // Bad number
         $message = 'Hi there I am a message that is bound to fail';
 
         $this->httpClient->shouldReceive('sendMessage')
@@ -116,12 +116,12 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
      */
     private function getStubSuccessResponse($to)
     {
-        $return[] = (object) array(
-            'id' => 'c15be99ec802d7d6424c7abd846e3bb8', # Returned message ID example
+        $return[] = (object) [
+            'id' => 'c15be99ec802d7d6424c7abd846e3bb8', // Returned message ID example
             'destination' => $to,
             'error' => false,
-            'errorCode' => false
-        );
+            'errorCode' => false,
+        ];
 
         return $return;
     }
