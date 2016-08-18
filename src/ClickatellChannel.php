@@ -3,8 +3,6 @@
 namespace NotificationChannels\Clickatell;
 
 use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Clickatell\Events\MessageWasSent;
-use NotificationChannels\Clickatell\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class ClickatellChannel
@@ -30,10 +28,6 @@ class ClickatellChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $this->shouldSendMessage($notifiable, $notification)) {
-            return;
-        }
-
         if (! $to = $notifiable->routeNotificationFor('clickatell')) {
             return;
         }
@@ -45,20 +39,5 @@ class ClickatellChannel
         }
 
         $this->clickatell->send($to, $message->getContent());
-
-        event(new MessageWasSent($notifiable, $notification));
-    }
-
-    /**
-     * Check if we can send the notification.
-     *
-     * @param $notifiable
-     * @param  Notification $notification
-     *
-     * @return bool
-     */
-    protected function shouldSendMessage($notifiable, Notification $notification)
-    {
-        return event(new SendingMessage($notifiable, $notification), [], true) !== false;
     }
 }
