@@ -98,12 +98,12 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
 
     private function getStubSuccessResponse($to)
     {
-        $return[] = (object) array(
-            'id'            => 'c15be99ec802d7d6424c7abd846e3bb8', # Returned message ID example
+        $return[] = (object) [
+            'id'            => 'c15be99ec802d7d6424c7abd846e3bb8', // Returned message ID example
             'destination'   => $to,
             'error'         => false,
-            'errorCode'     => false
-        );
+            'errorCode'     => false,
+        ];
 
         return $return;
     }
