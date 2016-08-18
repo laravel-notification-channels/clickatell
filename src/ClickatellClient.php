@@ -25,20 +25,18 @@ class ClickatellClient
     private $clickatell;
 
     /**
-     * @param string $user
-     * @param string $pass
-     * @param string $apiId
+     * @param ClickatellHttp $clickatellHttp
      */
-    public function __construct($user, $pass, $apiId)
+    public function __construct(ClickatellHttp $clickatellHttp)
     {
-        $this->clickatell = new ClickatellHttp($user, $pass, $apiId);
+        $this->clickatell = $clickatellHttp;
     }
 
     /**
-     * @param string|array $to String or Array of numbers
+     * @param array $to String or Array of numbers
      * @param string $message
      */
-    public function send($to, $message)
+    public function send(array $to, $message)
     {
         $to = collect($to)->toArray();
 
