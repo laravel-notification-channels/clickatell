@@ -1,4 +1,4 @@
-# Clickatell notifications channel for Laravel 5.3, 5.4, 5.5, 5.6
+# Clickatell notifications channel for Laravel 5.3, 5.4, 5.5, 5.6, 5.7
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -10,7 +10,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 
 
-This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.3, 5.4, 5.5, 5.6
+This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.3, 5.4, 5.5, 5.6, 5.7
 
 ## Contents
 
