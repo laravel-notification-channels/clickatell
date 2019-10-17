@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Clickatell;
 
-use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
 
 class ClickatellChannel
 {
