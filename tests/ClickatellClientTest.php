@@ -2,12 +2,13 @@
 
 namespace NotificationChannels\Clickatell\Test;
 
-use Clickatell\Api\ClickatellHttp;
 use Mockery;
+use PHPUnit\Framework\TestCase;
+use Clickatell\Api\ClickatellHttp;
 use NotificationChannels\Clickatell\ClickatellClient;
 use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
 
-class ClickatellClientTest extends \PHPUnit_Framework_TestCase
+class ClickatellClientTest extends TestCase
 {
     /** @var $clickatellClient ClickatellClient */
     private $clickatellClient;
@@ -15,7 +16,7 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @var $httpClient ClickatellHttp */
     private $httpClient;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -23,7 +24,7 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
         $this->clickatellClient = new ClickatellClient($this->httpClient);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();
@@ -65,6 +66,8 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_sends_a_message_to_a_single_number()
     {
+        $this->expectNotToPerformAssertions();
+
         $to = ['27848118111'];
         $message = 'Hi there I am a message';
 
@@ -79,6 +82,8 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_sends_a_message_to_multiple_numbers()
     {
+        $this->expectNotToPerformAssertions();
+
         $to = ['27848118111', '1234567890'];
 
         $message = 'Hi there I am a message to multiple receivers';
@@ -94,10 +99,8 @@ class ClickatellClientTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function throws_an_exception_on_failed_response_code()
     {
-        $this->setExpectedException(
-            CouldNotSendNotification::class,
-            "Clickatell responded with an error 'Invalid Destination Address: 105'"
-        );
+        $this->expectException(CouldNotSendNotification::class);
+        $this->expectExceptionMessage("Clickatell responded with an error 'Invalid Destination Address: 105'");
 
         $to = ['27848118']; // Bad number
         $message = 'Hi there I am a message that is bound to fail';
