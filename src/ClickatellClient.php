@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Clickatell;
 
+use stdClass;
 use Clickatell\Api\ClickatellHttp;
 use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
-use stdClass;
 
 class ClickatellClient
 {
