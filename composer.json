@@ -16,7 +16,7 @@
         "php": ">=7.1",
         "illuminate/notifications": "~5.5 || ~6.0",
         "illuminate/support": "~5.5 || ~6.0",
-        "arcturial/clickatell": "~2.1"
+        "arcturial/clickatell": "~3.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.2",
