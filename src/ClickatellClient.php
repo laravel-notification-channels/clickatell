@@ -41,14 +41,14 @@ class ClickatellClient
     {
         $to = collect($to)->toArray();
 
-        try {
-            $response = $this->clickatell->sendMessage($to, $message);
-        } catch (ClickatellException $e) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError(
-                (string) $e,
-                $errorCode
-            );
-        }
+        $client = new \GuzzleHttp\Client(['base_uri' => 'https://platform.clickatell.com/messages/http/']);
+        $query = sprintf(
+            'send?apiKey=%s&to=%s&content=%s',
+            config('services.clickatell.api_key'),
+            reset($to),
+            $message
+        );
+        $response = $client->request('GET', $query);
     }
 
     /**

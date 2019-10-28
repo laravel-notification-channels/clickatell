@@ -38,6 +38,10 @@ class ClickatellChannel
             $message = new ClickatellMessage($message);
         }
 
+        if (!is_array($to)) {
+            $to = [ $to ];
+        }
+
         $this->clickatell->send($to, $message->getContent());
     }
 }
