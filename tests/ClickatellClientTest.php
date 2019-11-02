@@ -2,11 +2,11 @@
 
 namespace NotificationChannels\Clickatell\Test;
 
-use Mockery;
-use PHPUnit\Framework\TestCase;
 use Clickatell\Api\ClickatellHttp;
+use Mockery;
 use NotificationChannels\Clickatell\ClickatellClient;
 use NotificationChannels\Clickatell\Exceptions\CouldNotSendNotification;
+use PHPUnit\Framework\TestCase;
 
 class ClickatellClientTest extends TestCase
 {
