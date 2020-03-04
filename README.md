@@ -59,6 +59,25 @@ Add your Clickatell user, password and api identifier  to your `config/services.
 
 ## Usage
 
+To route Clickatell notifications to the proper phone number, define a ```routeNotificationForClickatell```  method on your notifiable entity:
+```php
+class User extends Authenticatable
+{
+    use Notifiable;
+
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForClickatell($notification)
+    {
+        return $this->phone_number; 
+    }
+}
+```
+
 You can use the channel in your `via()` method inside the notification:
 
 ```php
