@@ -10,7 +10,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 
 
-This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.5+ and 6.0
+This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.5+, 6.x & 7.x.
 
 ## Contents
 
@@ -32,14 +32,6 @@ You can install the package via composer:
 
 ```bash
 composer require laravel-notification-channels/clickatell
-```
-
-In Laravel 5.5+ the service provider will automatically get registered. In older versions of the framework just add the service provider in config/app.php file:
-```php
-'providers' => [
-    ...
-    NotificationChannels\Clickatell\ClickatellServiceProvider::class,
-],
 ```
 
 ### Setting up the clickatell service
