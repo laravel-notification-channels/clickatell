@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Clickatell\Test;
 
-use PHPUnit\Framework\TestCase;
 use Clickatell\Api\ClickatellHttp;
 use NotificationChannels\Clickatell\ClickatellMessage;
+use PHPUnit\Framework\TestCase;
 
 class ClickatellMessageTest extends TestCase
 {
