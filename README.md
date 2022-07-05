@@ -9,22 +9,22 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/clickatell/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/clickatell/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/clickatell.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/clickatell)
 
-
-This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.5+, 6.x, 7.x & 8.x.
+This package makes it easy to send notifications using [clickatell.com](https://www.clickatell.com/) with Laravel 5.5+, 6.x, 7.x, 8.x & 9.x.
 
 ## Contents
 
-- [Installation](#installation)
-    - [Setting up the Clickatell service](#setting-up-the-clickatell-service)
-- [Usage](#usage)
-    - [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
-
+- [Clickatell notifications channel for Laravel](#clickatell-notifications-channel-for-laravel)
+  - [Contents](#contents)
+  - [Installation](#installation)
+    - [Setting up the clickatell service](#setting-up-the-clickatell-service)
+  - [Usage](#usage)
+    - [Available methods](#available-methods)
+  - [Changelog](#changelog)
+  - [Testing](#testing)
+  - [Security](#security)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Installation
 
@@ -52,6 +52,7 @@ Add your Clickatell user, password and api identifier  to your `config/services.
 ## Usage
 
 To route Clickatell notifications to the proper phone number, define a ```routeNotificationForClickatell```  method on your notifiable entity:
+
 ```php
 class User extends Authenticatable
 {
@@ -118,7 +119,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 - [etiennemarais](https://github.com/etiennemarais)
 - [arcturial](https://github.com/arcturial)
-    - For the [Clickatell Client implementation](https://github.com/arcturial/clickatell) which I leverage on for this wrapper
+  - For the [Clickatell Client implementation](https://github.com/arcturial/clickatell) which I leverage on for this wrapper
 
 ## License
 
